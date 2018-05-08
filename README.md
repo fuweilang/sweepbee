@@ -1,2 +1,1 @@
-a sweepbee game demo
-be read easily
+a sweepbee game demo which is read easily
