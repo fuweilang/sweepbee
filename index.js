@@ -2,12 +2,13 @@ var c = document.getElementById('myCanvas');
 var ctx = c.getContext('2d');
 var resetbtn = document.getElementById('resetbtn')
 
+// init bee's number
+var beenum = 20;
 var maxwidth = 400;
 var row = 10;
 var col = 10;
 var _left = 10;
 var _top = 10;
-var beenum = 30;
 var width = Math.floor(maxwidth / 10)
 var beeArr = []
 var grid = null
@@ -70,13 +71,13 @@ var methods = {
 			}
 		}
 	},
-	showRemind: function (grid, beei, beej) {
+	showAccout: function (grid, beei, beej) {
 		for (var i = beei-1; i <= beei+1; i++) {
 			for (var j = beej-1;j <= beej+1; j++) {
 				if (i >= 0 && j>=0 && i < col && j < row) {
 					var item = grid[i][j]
 					if (!item.revealed && item.total == 0 && i !== beei && j !== beej) {
-						methods.showRemind(grid, i, j)
+						methods.showAccout(grid, i, j)
 					}
 					item.show()
 				}
@@ -88,7 +89,7 @@ var methods = {
 			methods.showAll()
 		} else {
 			if (grid[i][j].total == 0) {
-				methods.showRemind(grid, i, j)
+				methods.showAccout(grid, i, j)
 				return
 			}
 			grid[i][j].show()
@@ -107,6 +108,7 @@ var methods = {
 	}
 }
 
+// init game
 var grid = methods.beginGame(grid)
 
 c.addEventListener('click', function(e) {
@@ -125,7 +127,7 @@ c.addEventListener('mousemove', function(e) {
 	methods.mousemovefn(grid, i, j)
 }, false)
 
-
+// reset game
 resetbtn.addEventListener('click', function(e) {
 	ctx.clearRect(0, 0, maxwidth, maxwidth);
 	grid = methods.beginGame(grid)

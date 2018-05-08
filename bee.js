@@ -8,6 +8,7 @@ function Bee (i, j, ctx, width, isbee) {
 	this.total = 0;
 }
 
+// draw every single box's board
 Bee.prototype.drawBoard = function() {
 	var i = this.i;
 	var j = this.j;
@@ -19,6 +20,7 @@ Bee.prototype.drawBoard = function() {
 	ctx.stroke();
 };
 
+// draw every single bee
 Bee.prototype.drawBee = function () {
 	var width = this.width
 	var ctx = this.ctx
@@ -32,6 +34,7 @@ Bee.prototype.drawBee = function () {
 	}
 };
 
+// draw every single account of near bees
 Bee.prototype.drawCount = function () {
 	var width = this.width
 	var ctx = this.ctx
@@ -42,6 +45,7 @@ Bee.prototype.drawCount = function () {
 	}
 }
 
+// reveal the current result: bee or account
 Bee.prototype.show = function () {
 	this.clearRect()
 	this.revealed = true
@@ -52,6 +56,7 @@ Bee.prototype.show = function () {
 	}
 }
 
+// the effect when cover every single box
 Bee.prototype.coverfn = function() {
 	var i = this.i;
 	var j = this.j;
@@ -61,10 +66,10 @@ Bee.prototype.coverfn = function() {
 		ctx.fillStyle = "#999";
 		ctx.clearRect(i * width, j * width, width, width);
 		ctx.fillRect(i * width, j * width, width, width)
-		// ctx.globalAlpha = 0.5;
 	}
 };
 
+// erasure the current box
 Bee.prototype.clearRect = function () {
 	var i = this.i;
 	var j = this.j;
@@ -74,6 +79,7 @@ Bee.prototype.clearRect = function () {
 	this.drawBoard()
 }
 
+// erasure all unrevealed boxes
 Bee.prototype.clearAllRect = function () {
 	if (!this.revealed) {
 		this.clearRect()
